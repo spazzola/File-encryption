@@ -3,13 +3,15 @@ package com.filesheriff.encryption;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @Service
 public class EncryptionService {
 
     private final SecretKey secretKey;
-
-
+    
     public EncryptionService(SecretKey secretKey) {
         this.secretKey = secretKey;
     }
@@ -45,6 +47,11 @@ public class EncryptionService {
         }
 
         return result;
+    }
+
+    public static byte[] convertToByte(File file) throws IOException {
+        return Files.readAllBytes(file.toPath());
+
     }
 
 }

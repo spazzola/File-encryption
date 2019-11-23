@@ -5,7 +5,6 @@ Program to encrypting and decrypting files with using symetric key.
 - Java 8
 - SpringBoot
 - Maven
-- Postman
 
 ### To Do
 - add User, UserService and UserController

@@ -1,6 +1,5 @@
 package com.filesheriff.encryption;
 
-import com.filesheriff.user.User;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.*;

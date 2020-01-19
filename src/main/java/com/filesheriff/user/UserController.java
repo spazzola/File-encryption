@@ -1,6 +1,5 @@
 package com.filesheriff.user;
 
-import com.filesheriff.MyLogger;
 import com.filesheriff.key.KeyService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import javax.servlet.annotation.WebServlet;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import java.util.logging.Level;
+
 
 @RestController
 @Log4j2

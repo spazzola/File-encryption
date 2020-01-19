@@ -1,6 +1,5 @@
 package com.filesheriff.user;
 
-import com.filesheriff.MyLogger;
 import com.filesheriff.key.Key;
 import com.filesheriff.validation.EmailValidation;
 import com.filesheriff.encryption.PasswordEncryptionService;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.logging.Level;
 
 @Service
 @Log4j2

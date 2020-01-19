@@ -1,6 +1,5 @@
 package com.filesheriff.key;
 
-import com.filesheriff.MyLogger;
 import com.filesheriff.encryption.EncryptionConfiguration;
 import com.filesheriff.user.User;
 import com.filesheriff.user.UserDao;
@@ -12,7 +11,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
 
 
 @Service

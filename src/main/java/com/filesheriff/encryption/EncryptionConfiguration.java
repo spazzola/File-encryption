@@ -12,11 +12,13 @@ import java.security.NoSuchAlgorithmException;
 public class EncryptionConfiguration {
 
     @Value("${encryption.key}")
-    private String key;
+    public String key;
 
     @Value("${encryption.algorithm}")
-    private String algorithm;
+    public String algorithm;
 
+
+    /*
     @Bean
     public SecretKey getSecretKey() {
         return new SecretKeySpec(key.getBytes(), algorithm);
@@ -26,5 +28,5 @@ public class EncryptionConfiguration {
         final KeyGenerator keygenerator = KeyGenerator.getInstance("AES");
         return keygenerator.generateKey();
     }
-
+*/
 }

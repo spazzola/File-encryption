@@ -1,6 +1,7 @@
 package com.filesheriff;
 
 import com.filesheriff.encryption.EncryptionConfiguration;
+import com.filesheriff.key.KeyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class EncryptionConfigurationTests {
 
     @Autowired
-    private EncryptionConfiguration encryptionConfiguration;
+    private KeyService keyService;
 
     @Test
     void contextLoads() {
@@ -22,16 +23,16 @@ public class EncryptionConfigurationTests {
 
     @Test
     void checkThatGeneratedKeysAreEquals() {
-        SecretKey firstKey = encryptionConfiguration.getSecretKey();
-        SecretKey secondKey = encryptionConfiguration.getSecretKey();
+        SecretKey firstKey = keyService.getSecretKey();
+        SecretKey secondKey = keyService.getSecretKey();
 
         assertThat(firstKey.equals(secondKey)).isTrue();
     }
 
     @Test
     void checkThatGeneratedKeyAreNotEquals() throws NoSuchAlgorithmException {
-        SecretKey firstKey = encryptionConfiguration.getRandomKey();
-        SecretKey secondKey = encryptionConfiguration.getRandomKey();
+        SecretKey firstKey = keyService.getRandomKey();
+        SecretKey secondKey = keyService.getRandomKey();
 
         assertThat(firstKey.equals(secondKey)).isFalse();
     }

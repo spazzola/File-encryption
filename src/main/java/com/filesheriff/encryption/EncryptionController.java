@@ -19,6 +19,7 @@ public class EncryptionController {
     @Autowired
     private EncryptionService encryptionService;
 
+
     @PostMapping("/encrypt")
     public ResponseEntity<byte[]> encryptFile(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         byte[] bytes = multipartFile.getBytes();

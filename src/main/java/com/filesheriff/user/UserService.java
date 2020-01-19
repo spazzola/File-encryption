@@ -35,14 +35,16 @@ public class UserService {
     }
 
     public void registerUser(String userName, String password, String email) throws NoSuchAlgorithmException {
-        //TODO password validation if necessary
+        //TODO password validation 
 
         if (validateUser(userName, email)) {
 
             final String encryptedPassword = passwordEncryptionService.encryptPassword(password);
             final User user = new User(userName, encryptedPassword, email);
 
-            final Key key = keyService.generateRandomKey();
+            userDao.save(user);
+
+            final Key key = keyService.generateKey(user);
 
             user.setKey(key);
 
@@ -51,10 +53,6 @@ public class UserService {
         }
 
     }
-
-    //1. Na podstawie danych tworzysz User i zapisujesz do bazy.
-    //2. Na podstawie id usera robisz obiekt key i ustawiasz w obiekcie user.
-    //3. Powtorzenie kroku 1.
 
     public boolean validateUser(String userName, String email) {
 

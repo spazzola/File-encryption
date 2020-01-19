@@ -21,9 +21,6 @@ public class UserController {
     @Autowired
     private KeyService keyService;
 
-    @Autowired
-    private MyLogger myLogger;
-
     private Logger logger = LogManager.getLogger(UserController.class);
 
 

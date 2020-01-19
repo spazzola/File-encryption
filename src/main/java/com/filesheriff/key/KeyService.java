@@ -56,6 +56,13 @@ public class KeyService {
         return key;
     }
 
+    public Key generateKey(User user) throws NoSuchAlgorithmException {
+        SecretKey secretKey = getRandomKey();
+        Key key = new Key(user.getUserId(), secretKey);
+
+        return key;
+    }
+
     public void setKeyToUser(User user) throws NoSuchAlgorithmException {
         final long keyId = user.getUserId();
 

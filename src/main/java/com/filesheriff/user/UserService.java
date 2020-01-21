@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public void registerUser(String userName, String password, String email) throws NoSuchAlgorithmException {
-        //TODO password validation 
+        //TODO password validation
 
         if (validateUser(userName, email)) {
 

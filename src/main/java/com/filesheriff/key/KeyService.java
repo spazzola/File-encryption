@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 @Service
 public class KeyService {
 
-    //obie byly final
     private  KeyDao keyDao;
     private  UserDao userDao;
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Registration</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/fontello/css/fontello.css}" type="text/css" />
+
+</head>
+<body>
+
+<form th:action="@{/register}" th:object="${registerForm}" method="post">
+    <div id="container">
+
+        <div id="registerForm">
+
+            <div class="title"><i class="demo-icon icon-user-3" >&#xe800;</i>
+                Registration form
+            </div>
+
+            <div class="rectangle">
+                <label for="userName"></label>
+                <input class="rectangle" type="userName" id="userName" name="userName" placeholder="Enter your user name" autofocus="autofocus" style="margin-top: -7px; right: 7px;" required/>
+            </div>
+
+            <div class="rectangle">
+                <label for="email"></label>
+                <input class="rectangle" type="text" id="email" name="email" placeholder="Enter your email" style="margin-top: -7px; right: 7px;" required />
+            </div>
+
+            <div class="rectangle">
+                <label for="password"></label>
+                <input class="rectangle" type="password" id="password" name="password" placeholder="Enter your password" style="margin-top: -7px; right: 7px;" required />
+            </div>
+
+            <div class="rectangle">
+                <label for="matchingPassword"></label>
+                <input class="rectangle" type="password" id="matchingPassword" name="matchingPassword" placeholder="Confirm your password" style="margin-top: -7px; right: 7px;" required />
+            </div>
+
+            <div class="title" style="font-size: 15px; text-align: center;">
+               By creating an account you agree to our <br>  <a th:href="@{termsandconditions}"> Terms & Privacy.</a>
+            </div>
+                 <a th:href="@{login}">I have account already</a>
+
+            <div class="rectangle" style="border: none; bottom: 10px; left: 50px; margin-left: auto; margin-right: auto;">
+                <input class="myButton" value="Register" type="submit">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+</body>
+</html>
+

@@ -57,6 +57,20 @@ body
     overflow:auto;
 }
 
+#homeForm
+{
+    position: relative;
+    width: 1300px;
+    height: 618px;
+    border-radius: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
 .title
 {
     position: relative;
@@ -131,3 +145,74 @@ a
     font-size: 15px;
     text-align: center;
 }
+
+.parallelogram {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    transform: skew(-25deg);
+    border: 3px solid black;
+    border-radius: 10%;
+    margin: 15px;
+    margin-top: 50px;
+    cursor: pointer;
+    float: left;
+
+  }
+
+  .parallelogram:hover
+  {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(8, 117, 172) 55%, rgb(15, 94, 114) 75%, rgb(18, 109, 170) 100%);
+  }
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.box
+{
+    position: relative;
+    left: 100px;
+    margin-top: 300px;
+    height: 300px;
+    width: 500px;
+    float: left;
+}
+
+[type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  [type="file"] + label {
+    background:  rgba(8, 81, 226, 1);
+    border-radius: 4rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 2rem 4rem;
+    padding: 5px;
+  }
+
+  [type="file"]:focus + label,
+  [type="file"] + label:hover {
+      background-color: #f15d22;
+  }
+
+  [type="file"]:focus + label {
+    outline: 1px dotted #000;
+  }

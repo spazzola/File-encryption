@@ -1,5 +1,6 @@
 package com.filesheriff.validation;
 
+import com.filesheriff.user.UserDao;
 import com.filesheriff.user.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
@@ -7,13 +8,16 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 @Log4j2
+@Service
 public class EmailValidation {
 
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDao userDao;
 
     private Logger logger = LogManager.getLogger(UserService.class);
 
@@ -23,10 +27,7 @@ public class EmailValidation {
     }
 
     public boolean validateEmail(String email) {
-        if (validateEmailBody(email) && isEmailExist(email)) {
-            return true;
-        }
-        return false;
+        return validateEmailBody(email) && isEmailExist(email);
     }
 
     private boolean validateEmailBody(String email) {
@@ -40,8 +41,7 @@ public class EmailValidation {
 
 
     private boolean isEmailExist(String email) {
-        //change getUserByEmail to findByEmail (from dao)
-        if (userService.getUserByEmail(email) == null) {
+        if (userDao.findByEmail(email) == null) {
             return true;
         }
         logger.info("This email already exists");

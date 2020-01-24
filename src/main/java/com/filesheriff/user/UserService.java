@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 @Service
 @Log4j2
@@ -23,11 +22,12 @@ public class UserService {
     @Autowired
     private KeyService keyService;
 
+    private final UserDao userDao;
+
+    private final PasswordEncryptionService passwordEncryptionService;
+
     private Logger logger = LogManager.getLogger(UserService.class);
 
-
-    private final UserDao userDao;
-    private final PasswordEncryptionService passwordEncryptionService;
 
     public UserService(UserDao userDao, PasswordEncryptionService passwordEncryptionService) {
         this.userDao = userDao;
@@ -49,17 +49,12 @@ public class UserService {
             user.setKey(key);
 
             userDao.save(user);
-
         }
-
     }
 
     public boolean validateUser(String userName, String email) {
 
-        if (emailValidation.validateEmail(email) && isUserNameExist(userName)) {
-            return true;
-        }
-        return false;
+        return emailValidation.validateEmail(email) && isUserNameExist(userName);
     }
 
     private boolean isUserNameExist(String userName) {
@@ -68,10 +63,6 @@ public class UserService {
         }
         logger.info("User name already exists");
         return false;
-    }
-
-    public List<User> getUsers() {
-        return userDao.findAll();
     }
 
     public User getUserByEmail(String email) {

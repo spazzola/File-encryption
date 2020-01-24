@@ -1,6 +1,6 @@
 package com.filesheriff.user;
 
-import com.filesheriff.MyUserDetailsService;
+import com.filesheriff.userdetails.MyUserDetailsService;
 import com.filesheriff.encryption.PasswordEncryptionService;
 import com.filesheriff.form.LoginForm;
 import com.filesheriff.form.RegisterForm;
@@ -19,15 +19,15 @@ import java.security.NoSuchAlgorithmException;
 
 
 @Log4j2
-//@RequestMapping("/user")
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private KeyService keyService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private PasswordValidation passwordValidation;
@@ -38,29 +38,15 @@ public class UserController {
     @Autowired
     private PasswordEncryptionService passwordEncryptionService;
 
-
-
     private Logger logger = LogManager.getLogger(UserController.class);
 
-
-
-    //zamiast name password i email jeden obiekt
-    //metoda niech zwroci UserDto
-    //@PostMapping("/register")
-    public void registerUser(String userName, String password, String email) throws NoSuchAlgorithmException {
-        logger.info("---Starting registration process---");
-
-        userService.registerUser(userName, password, email);
-
-        logger.info("---Registration process finished---");
-    }
 
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String getRegisterForm(){
         return "register";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String getLoginPage() {
         return "login";
     }
@@ -69,7 +55,6 @@ public class UserController {
     public String getTermsAndConditions() {
         return "termsandconditions";
     }
-
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String getCredentials(@ModelAttribute(name="registerForm") RegisterForm registerForm) throws NoSuchAlgorithmException {
@@ -80,7 +65,12 @@ public class UserController {
         String matchingPassword = registerForm.getMatchingPassword();
 
         if (passwordValidation.checkMatchingPassword(password, matchingPassword)) {
-            registerUser(userName, password, email);
+            logger.info("---Starting registration process---");
+
+            userService.registerUser(userName, password, email);
+
+            logger.info("---Registration process finished---");
+
             return "login";
         }
 
@@ -99,11 +89,10 @@ public class UserController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if (passwordEncoder.matches(password, user.getPassword())) {
-            return "home";
+            return "homePage";
         }
 
         return "login";
     }
-
 
 }

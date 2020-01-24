@@ -38,37 +38,11 @@ public class KeyService {
         return keygenerator.generateKey();
     }
 
-
-
-    public Key generateRandomKey() throws NoSuchAlgorithmException {
-        SecretKey secretKey = getRandomKey();
-
-        return new Key(secretKey);
-    }
-
-
-    //Generating key for given user
-    public Key generateKey(Long userId) throws NoSuchAlgorithmException {
-        SecretKey secretKey = getRandomKey();
-        Key key = new Key(userId, secretKey);
-
-        return key;
-    }
-
     public Key generateKey(User user) throws NoSuchAlgorithmException {
         SecretKey secretKey = getRandomKey();
         Key key = new Key(user.getUserId(), secretKey);
 
         return key;
-    }
-
-    public void setKeyToUser(User user) throws NoSuchAlgorithmException {
-        final long keyId = user.getUserId();
-
-        Key key = generateKey(keyId);
-        keyDao.save(key);
-
-        userDao.setKey(keyId, keyId);
     }
 
 }

@@ -1,8 +1,8 @@
 package com.filesheriff.validation;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class PasswordValidation {
 
     public PasswordValidation() {

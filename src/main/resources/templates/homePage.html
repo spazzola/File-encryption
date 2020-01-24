@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    
+<meta charset="utf-8" />
+<title>Home Page</title>
+<meta name="keywords" content="encrypt, encryption, fileencryption" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+
+</head>
+
+<body>
+
+<div id="container" style="width: 1600px;">
+
+
+    <div id="homeForm">
+
+        <div class="box">
+
+
+            <form th:action="@{/crypto/encryption}" th:object="${file}" enctype="multipart/form-data" method="post" style="float: left;">
+                <label class="file">
+                    <input type="file" id="file" name="file" aria-label="File browser example" >
+                    <span class="file-custom">Choose a file to encrypt</span>
+                </label>
+
+                <label for="myAccount"></label>
+                <input type="submit" id="myAccount" name="myAccount" class="parallelogram" value="My account" style="background-color: blue;">
+
+                <label for="encryption"></label>
+                <input type="submit" id="encryption" name="encryption" class="parallelogram" value="Encryption" style="background-color: blue; bottom: 23px;">
+
+            </form>
+        </div>
+
+
+
+        <div class="box" >
+            </form>
+
+
+
+            <form th:action="@{/crypto/decryption}" th:object="${file}" enctype="multipart/form-data" method="post">
+                <label class="file">
+                    <input type="file" name="file" aria-label="File browser example" placeholder="File to encrypt" style="position:relative; right:250px;">
+                    <span class="file-custom">Choose a file to decrypt</span>
+                </label>
+
+                <label for="decryption"></label>
+                <input type="submit" id="decryption" name="decryption" class="parallelogram" value="Decryption" style="background-color: blue; right: 135px;">
+
+                <label for="logOut"></label>
+                <input type="submit" id="logOut" name="logOut" class="parallelogram" value="Log out" style="background-color: blue; bottom: 20px; right: 135px;">
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+
+</html>

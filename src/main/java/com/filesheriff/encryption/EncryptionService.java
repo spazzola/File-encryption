@@ -15,16 +15,19 @@ public class EncryptionService {
     }
 
     public byte[] encryption(byte[] bytesArray) {
-        byte[] result = null;
+        if (bytesArray == null) {
+            throw new IllegalArgumentException("Input cant be null");
+        }
+
+        final byte[] result;
 
         try {
             Cipher desCipher = Cipher.getInstance("AES");
-
             desCipher.init(Cipher.ENCRYPT_MODE, secretKey);
             result = desCipher.doFinal(bytesArray);
-
-        }catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace(); //chcesz zalogowac ten
+            throw new RuntimeException("Cos poszlo nie tak podczas szyfrowania", e); // i rzucic swoj
         }
 
         return result;
@@ -32,16 +35,19 @@ public class EncryptionService {
 
 
     public byte[] decryption(byte[] bytesArray) {
-        byte[] result = null;
+        if (bytesArray == null) {
+            throw new IllegalArgumentException("Input cant be null");
+        }
+
+        final byte[] result;
 
         try {
             Cipher desCipher = Cipher.getInstance("AES");
-
             desCipher.init(Cipher.DECRYPT_MODE, secretKey);
             result = desCipher.doFinal(bytesArray);
-
-        }catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace(); //zaloguj wyjatek
+            throw new RuntimeException("Cos poszlo nie tak podczas szyfrowania", e); //i rzuc wlasny
         }
 
         return result;

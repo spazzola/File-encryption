@@ -7,7 +7,6 @@ import com.filesheriff.key.KeyService;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -16,20 +15,17 @@ import java.security.NoSuchAlgorithmException;
 @Log4j2
 public class UserService {
 
-    @Autowired
-    private EmailValidation emailValidation;
-
-    @Autowired
-    private KeyService keyService;
-
+    private final EmailValidation emailValidation;
+    private final KeyService keyService;
     private final UserDao userDao;
-
     private final PasswordEncryptionService passwordEncryptionService;
 
     private Logger logger = LogManager.getLogger(UserService.class);
 
-
-    public UserService(UserDao userDao, PasswordEncryptionService passwordEncryptionService) {
+    public UserService(EmailValidation emailValidation, KeyService keyService, UserDao userDao,
+                       PasswordEncryptionService passwordEncryptionService) {
+        this.emailValidation = emailValidation;
+        this.keyService = keyService;
         this.userDao = userDao;
         this.passwordEncryptionService = passwordEncryptionService;
     }

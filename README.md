@@ -2,12 +2,14 @@
 Program to encrypting and decrypting files with using symetric key.
 
 ### Technologies:
-- Java 8
-- SpringBoot
-- Maven
+- Java 8, HTML, CSS;
+- SpringBoot;
+- Maven;
 
 ### To Do
-- add User, UserService and UserController
-- set up DataBase - Hibernate
-- project Front-End
+- JWT;
+- forgot/changing password;
+- saving file after selecting path;
+- improve front-end;
+
 

@@ -12,18 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailValidation {
 
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserDao userDao;
-
-    private Logger logger = LogManager.getLogger(UserService.class);
+    private final UserDao userDao;
+    private final Logger logger = LogManager.getLogger(UserService.class);
 
 
-    public EmailValidation() {
-
+    public EmailValidation(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     public boolean validateEmail(String email) {

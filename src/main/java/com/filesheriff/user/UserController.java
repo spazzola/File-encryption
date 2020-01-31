@@ -23,23 +23,23 @@ import java.security.NoSuchAlgorithmException;
 public class UserController {
 
 
-    @Autowired
     private KeyService keyService;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private PasswordValidation passwordValidation;
-
-    @Autowired
     private MyUserDetailsService myUserDetailsService;
-
-    @Autowired
     private PasswordEncryptionService passwordEncryptionService;
 
     private Logger logger = LogManager.getLogger(UserController.class);
 
+
+    public UserController(KeyService keyService, UserService userService, PasswordValidation passwordValidation,
+                          MyUserDetailsService myUserDetailsService, PasswordEncryptionService passwordEncryptionService) {
+        this.keyService = keyService;
+        this.userService = userService;
+        this.passwordValidation = passwordValidation;
+        this.myUserDetailsService = myUserDetailsService;
+        this.passwordEncryptionService = passwordEncryptionService;
+    }
 
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String getRegisterForm(){
@@ -80,11 +80,10 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute(name="loginForm") LoginForm loginForm) {
+        final String userName = loginForm.getUserName();
+        final String password = loginForm.getPassword();
 
-        String userName = loginForm.getUserName();
-        String password = loginForm.getPassword();
-
-        UserDetails user  = myUserDetailsService.loadUserByUsername(userName);
+        final UserDetails user  = myUserDetailsService.loadUserByUsername(userName);
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

@@ -28,6 +28,7 @@ public class KeyService {
         this.userDao = userDao;
     }
 
+    //generating same key every time
     @Bean
     public SecretKey getSecretKey() {
         return new SecretKeySpec(encryptionConfiguration.key.getBytes(), encryptionConfiguration.algorithm);
